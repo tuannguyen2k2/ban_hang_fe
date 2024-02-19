@@ -11,9 +11,8 @@ const MainLayout = ({ children }) => {
     const toggleCollapsed = () => setCollapsed((prev) => !prev);
     return (
         <Layout>
-            <NavSider collapsed={collapsed} onCollapse={toggleCollapsed} width={SIDEBAR_WIDTH_EXPAND} />
             <Layout>
-                <AppHeader collapsed={collapsed} onCollapse={toggleCollapsed} />
+                <AppHeader />
                 <Content>
                     <div style={{ minHeight: 'calc(100vh - 113px)' }}>{children}</div>
                     <Footer style={{ backgroundColor: '#ccc', textAlign: 'center', padding: '15px' }}>
