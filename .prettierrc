@@ -3,5 +3,16 @@
     "trailingComma": "es5",
     "jsxSingleQuote": true,
     "printWidth": 120,
-    "tabWidth": 4
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": "**/*.scss",
+            "options": {
+                "singleQuote": true,
+                "trailingComma": "es5",
+                "printWidth": 120,
+                "tabWidth": 4
+            }
+        }
+    ]
 }

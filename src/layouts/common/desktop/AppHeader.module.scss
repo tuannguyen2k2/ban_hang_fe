@@ -1,0 +1,75 @@
+.appHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+    z-index: 1;
+    height: 80px;
+    .logo{
+        height: 60px;
+    }
+    .label{
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .iconCollapse {
+        padding: 0 22px;
+        height: 64px;
+        cursor: pointer;
+        transition: all .3s,padding 0s;
+        font-size: 20px;
+        flex-shrink: 0;
+        border: none;
+        background-color: transparent;
+
+        .trigger {
+            font-size: 22px;
+        }
+    }
+
+    .menuRight{
+        font-family: 'Mulish', sans-serif;
+        height: 40px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0;
+        :global{
+            .ant-badge{
+                height: 20px;
+            }
+        }
+    }
+    .navMenu{
+        @media (max-width: 1280px) {
+            display: none;
+        }
+    }
+    .search{
+        width: 200px;
+    }
+}
+
+:global{
+    .ant-menu-horizontal{
+        border-bottom: none;
+    }
+    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected{
+        color: var(--salmon-pink);
+    }
+    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
+        border-bottom-color: var(--salmon-pink);
+    }
+    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-active::after{
+        border-bottom-color: var(--salmon-pink)!important;
+    }
+    .ant-menu-item:hover{
+        color: var(--salmon-pink)!important;
+    }
+}

@@ -33,13 +33,10 @@ const ValidateAccess = ({
         return <Navigate state={{ from: location }} key={redirect} to={redirect} replace />;
     }
 
-    const Layout = authRequire ? layout || MainLayout : PublicLayout;
     return (
-        <Layout>
-            <Component pageOptions={pageOptions} {...(componentProps || {})}>
-                <Outlet />
-            </Component>
-        </Layout>
+        <Component pageOptions={pageOptions} {...(componentProps || {})}>
+            <Outlet />
+        </Component>
     );
 };
 

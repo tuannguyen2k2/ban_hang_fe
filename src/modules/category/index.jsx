@@ -9,6 +9,7 @@ import locales from '../../locales';
 import routes from '../../routes';
 import { convertIsoToLocalTime } from '../../utils/formatDate';
 import CategoryModal from './CategoryModal';
+import RenderContext from '../../components/common/RenderContext';
 const CategoryListPage = () => {
     const { data, loading, mixinFuncs, pagination, openModal, isEditing, dataRowSelected } = useListBase({
         apiConfig: apiConfig.category,
@@ -68,33 +69,7 @@ const CategoryListPage = () => {
             placeholder: locales.nameCategory,
         },
     ];
-    return (
-        <PageWrapper breadcrumbs={breadcrumbs}>
-            <ListPage
-                actionBar={mixinFuncs.renderActionBar()}
-                searchForm={mixinFuncs.renderSearchForm({
-                    fields: searchFields,
-                })}
-                baseTable={
-                    <BaseTable
-                        columns={columns}
-                        dataSource={data}
-                        loading={loading}
-                        onChange={mixinFuncs.changePagination}
-                        pagination={pagination}
-                    />
-                }
-            />
-            <CategoryModal
-                dataRowSelected={dataRowSelected}
-                isEditing={isEditing}
-                openModal={openModal}
-                setOpenModal={mixinFuncs.setOpenModal}
-                setIsEditing={mixinFuncs.setIsEditing}
-                getList={mixinFuncs.getList}
-            />
-        </PageWrapper>
-    );
+    return <RenderContext />;
 };
 
 export default CategoryListPage;

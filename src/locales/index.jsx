@@ -1,4 +1,7 @@
 const locales = {
+    searchProductPlaceHolder: 'Tìm kiếm sản phẩm ...',
+    introduction: 'Giới thiệu',
+    store: 'Cửa hàng',
     footer: 'Copyright@tuannguyennocode',
     analytic: 'Thống kê',
     noticeDeveloping: 'Chức năng đang được phát triển.',

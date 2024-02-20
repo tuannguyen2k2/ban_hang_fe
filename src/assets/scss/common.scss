@@ -14,6 +14,10 @@ html {
     box-sizing: inherit;
 }
 
+:root{
+    --header-height: 5.5rem;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -31,4 +35,30 @@ button{
     &:hover {
         text-decoration: underline;
       }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 4.4rem;
+        --big-font-size: 20px;
+        --h1-font-size: 28px; // 25px
+        --h2-font-size: 26px;
+        --h3-font-size: 24px;
+        --primary-font-size: 16px;
+        --sub-font-size: 14px;
+        --small-font-size: 10px;
+    }
+}
+
+@media (max-width: 960px) {
+    :root {
+        --header-height: 4.4rem;
+        --big-font-size: 20px;
+        --h1-font-size: 28px; // 25px
+        --h2-font-size: 26px;
+        --h3-font-size: 24px;
+        --primary-font-size: 16px;
+        --sub-font-size: 14px;
+        --small-font-size: 10px;
+    }
 }
