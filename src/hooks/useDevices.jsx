@@ -7,7 +7,7 @@ const useDevices = () => {
     });
 
     const handleResize = () => {
-        const isMobile = window.innerWidth < 768;
+        const isMobile = window.innerWidth <= 768;
         const isDesktop = !isMobile;
         setDevices({
             isMobile: isMobile,

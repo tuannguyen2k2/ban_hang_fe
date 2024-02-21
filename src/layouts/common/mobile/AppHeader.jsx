@@ -15,7 +15,6 @@ const AppHeader = () => {
                 </button>
                 <img src={logo} alt='logo' className={styles.logo} />
             </Flex>
-            {/* <Menu mode='horizontal' defaultSelectedKeys={['2']} items={items} style={{ width: '450px' }} /> */}
             <Flex>
                 <button className={styles.itemMenuRight}>
                     <IoSearchOutline size={24} />

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
+    padding: 0 100px;
     box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
     z-index: 1;
     height: 80px;
@@ -13,46 +13,35 @@
         font-size: 16px;
         font-weight: 300;
     }
-
-    .iconCollapse {
-        padding: 0 22px;
-        height: 64px;
-        cursor: pointer;
-        transition: all .3s,padding 0s;
-        font-size: 20px;
-        flex-shrink: 0;
+    .menuButton{
+        @media (min-width: 1280px) {
+            display: none;
+        }
+        margin-top: 4px;
         border: none;
         background-color: transparent;
-
-        .trigger {
-            font-size: 22px;
-        }
     }
 
     .menuRight{
+        width: 150px;
+    }
+    .itemMenuRight{
         font-family: 'Mulish', sans-serif;
+        padding: 6px 0 0 0;
         height: 40px;
-        margin-right: 20px;
+        width: fit-content;
         display: flex;
-        align-items: center;
         border: none;
         box-shadow: none;
         background-color: transparent;
+        margin-right: 20px;
         cursor: pointer;
-        padding: 0;
-        :global{
-            .ant-badge{
-                height: 20px;
-            }
-        }
     }
     .navMenu{
+        min-width: 450px;
         @media (max-width: 1280px) {
             display: none;
         }
-    }
-    .search{
-        width: 200px;
     }
 }
 

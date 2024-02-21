@@ -1,6 +1,5 @@
-import { sendRequest } from '../services/api';
 import { useCallback, useEffect, useState } from 'react';
-import { apiUrl } from '../constants';
+import { sendRequest } from '../services/api';
 import useIsMounted from './useIsMounted';
 
 const useFetch = (apiConfig, { immediate = false, mappingData, params = {}, pathParams = {} } = {}) => {
