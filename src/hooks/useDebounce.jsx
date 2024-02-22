@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useDebounce(value, delay) {
+const useDebounce = (value, delay) => {
     const [debounce, setDebounce] = useState(value);
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -11,6 +11,6 @@ function useDebounce(value, delay) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
     return debounce;
-}
+};
 
 export default useDebounce;
