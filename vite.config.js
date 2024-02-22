@@ -17,4 +17,10 @@ export default defineConfig({
         host: 'localhost',
         port: 3000,
     },
+    resolve: {
+        alias: {
+            '@hooks': path.resolve(__dirname, 'src/hooks'),
+            '@locales': path.resolve(__dirname, 'src/locales'),
+        },
+    },
 });
