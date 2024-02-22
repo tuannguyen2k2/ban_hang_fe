@@ -4,10 +4,20 @@
     --border-search: 1px var(--color-search) solid;
     --border-radius-search: 40px;
     --width-search: 500px;
-    --width-input-focus-search: calc(var(--width-search) - 100px);
-    --width-input-search: calc(var(--width-search) - 300px);
+    --background-search: white;
+    --width-input-search:  calc(var(--width-search) - 100px);
+    --color-result: white;
 }
-
+.searchWrapper{
+    padding: 10px;
+    background-color: var(--salmon-pink);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
 .search{
     margin: 0 10px;
     max-width: var(--width-search);
@@ -17,6 +27,7 @@
     border-radius: var(--border-radius-search);
 }
 .searchIcon{
+    background-color: var(--background-search);
     width: fit-content;
     padding: 4px;
     color:var(--color-search);
@@ -28,6 +39,7 @@
     border-bottom-right-radius: 0;
 }
 .inputSearch{
+    background-color: var(--background-search);
     font-size: 14px;
     height: var(--height-search);
     border: var(--border-search);
@@ -38,7 +50,6 @@
     border-bottom-left-radius: 0;
     &:focus{
         box-shadow: none;
-        width: var(--width-input-focus-search);
         flex-grow: 1;
     }
     &:hover, &:focus{
@@ -49,3 +60,26 @@
     }
 }
 
+
+.wrapper{
+    min-height: 100px;
+    max-height: 500px;
+    background-color: var(--salmon-pink);
+    color: var(--color-result);
+    width: calc(var(--width-search) - 150px);
+    border-radius: 10px;
+    span{
+        line-height: var(--line-height-primary);
+        max-width: 200px;
+    }
+}
+//ItemSearch
+.itemSearch{
+    margin: 10px 10px;
+    padding-bottom: 10px;
+    max-height: 80px;
+    border-bottom: 1px var(--color-result) solid;
+}
+.nameItem{
+    margin-bottom: 10px;
+}

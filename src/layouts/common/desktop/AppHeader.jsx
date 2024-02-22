@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Badge, Flex, Input, Menu } from 'antd';
-import { Header } from 'antd/es/layout/layout';
-import { IoBagHandleOutline, IoPersonOutline, IoSearchOutline } from 'react-icons/io5';
-import { LuMenu } from 'react-icons/lu';
 import locales from '../../../locales';
+import { Badge, Flex, Menu } from 'antd';
+import { Header } from 'antd/es/layout/layout';
+import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
+import { LuMenu } from 'react-icons/lu';
 import styles from './AppHeader.module.scss';
+import Search from './search/Search';
 import logo from '/public/logo.ico';
-import Search from './Search';
 
 const AppHeader = () => {
     const items = [

@@ -5,8 +5,11 @@ import { IoBagHandleOutline, IoPersonOutline, IoSearchOutline } from 'react-icon
 import { LuMenu } from 'react-icons/lu';
 import styles from './AppHeader.module.scss';
 import logo from '/public/logo.ico';
+import { useState } from 'react';
+import Search from './search/Search';
 
 const AppHeader = () => {
+    const [openSearch, setOpenSearch] = useState(false);
     return (
         <Header className={styles.appHeader} style={{ background: 'white' }}>
             <Flex align='center'>
@@ -16,7 +19,7 @@ const AppHeader = () => {
                 <img src={logo} alt='logo' className={styles.logo} />
             </Flex>
             <Flex>
-                <button className={styles.itemMenuRight}>
+                <button className={styles.itemMenuRight} onClick={() => setOpenSearch(true)}>
                     <IoSearchOutline size={24} />
                 </button>
                 <button className={styles.itemMenuRight}>
@@ -28,6 +31,7 @@ const AppHeader = () => {
                     <IoPersonOutline size={24} />
                 </button>
             </Flex>
+            {openSearch && <Search />}
         </Header>
     );
 };
