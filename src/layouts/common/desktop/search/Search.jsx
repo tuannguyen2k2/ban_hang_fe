@@ -6,7 +6,7 @@ import useFetch from '../../../../hooks/useFetch';
 import apiConfig from '../../../../constants/apiConfig';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
-import useDebounce from '../../../../hooks/useDeBounce';
+import useDebounce from '@hooks/useDeBounce';
 import ItemSearch from './ItemSearch';
 
 const Search = () => {
