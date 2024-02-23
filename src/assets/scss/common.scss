@@ -3,20 +3,11 @@ html {
     box-sizing: border-box;
 }
 
-*{
-    --salmon-pink: #f196a1;
-    --line-height-primary: 1.5;
-}
-
 
 *,
 *::before,
 *::after {
     box-sizing: inherit;
-}
-
-:root{
-    --header-height: 5.5rem;
 }
 
 body {

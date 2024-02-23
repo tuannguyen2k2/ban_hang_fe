@@ -1,16 +1,12 @@
 :root{
-    --height-search: 32px;
-    --color-search: #d9d9d9;
-    --border-search: 1px var(--color-search) solid;
-    --border-radius-search: 40px;
-    --width-search: 500px;
-    --width-input-search:  calc(var(--width-search) - 100px);
-    --color-result: white;
+    --width-search-desktop: 500px;
+    --width-input-search-desktop:  calc(var(--width-search-desktop) - 100px);
 }
 
 .search{
+    background-color: var(--background-search);
     margin: 0 10px;
-    max-width: var(--width-search);
+    max-width: var(--width-search-desktop);
     &:focus-within{
         box-shadow: 0 0 0 2px #ff8f9c1a;
     }
@@ -32,7 +28,7 @@
     height: var(--height-search);
     border: var(--border-search);
     border-radius: var(--border-radius-search);
-    width: var(--width-input-search);
+    width: var(--width-input-search-desktop);
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -52,9 +48,9 @@
 .wrapper{
     min-height: 100px;
     max-height: 500px;
-    background-color: var(--salmon-pink);
+    background-color: var(--color-primary);
     color: var(--color-result);
-    width: calc(var(--width-search) - 70px);
+    width: calc(var(--width-search-desktop) - 70px);
     border-radius: 10px;
     span{
         line-height: var(--line-height-primary);

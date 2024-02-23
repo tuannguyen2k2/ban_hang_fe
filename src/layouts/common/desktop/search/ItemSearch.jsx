@@ -4,6 +4,7 @@ import styles from './Search.module.scss';
 import { formatMoney } from '../../../../utils/formatMoney';
 import { CURRENCY_UNIT } from '../../../../constants';
 const ItemSearch = ({ data }) => {
+    console.log(data);
     return (
         <Flex className={styles.itemSearch} justify='space-between' align='center'>
             <Flex vertical className={styles.itemLeft}>

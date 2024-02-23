@@ -9,7 +9,7 @@
     .logo{
         height: 60px;
     }
-    .label{
+    .labelNavMenu{
         font-size: 16px;
         font-weight: 300;
     }
@@ -20,8 +20,9 @@
         margin-top: 4px;
         border: none;
         background-color: transparent;
+        cursor: pointer;
     }
-
+    
     .menuRight{
         width: 150px;
     }
@@ -43,22 +44,47 @@
             display: none;
         }
     }
+
+    :global{
+        .ant-menu-horizontal{
+            border-bottom: none;
+        }
+        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected{
+            color: var(--color-primary);
+        }
+        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
+            border-bottom-color: var(--color-primary);
+        }
+        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-active::after{
+            border-bottom-color: var(--color-primary)!important;
+        }
+        .ant-menu-item:hover{
+            color: var(--color-primary)!important;
+        }
+    }
 }
 
-:global{
-    .ant-menu-horizontal{
-        border-bottom: none;
-    }
-    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected{
-        color: var(--salmon-pink);
-    }
-    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
-        border-bottom-color: var(--salmon-pink);
-    }
-    .ant-menu-light.ant-menu-horizontal >.ant-menu-item-active::after{
-        border-bottom-color: var(--salmon-pink)!important;
-    }
-    .ant-menu-item:hover{
-        color: var(--salmon-pink)!important;
+
+
+//Drawer
+
+.wrapperContentDrawer{
+    line-height: var(--line-height-primary);
+    font-weight: 600;
+    padding: 10px 0 0 20px;
+}
+.labelDrawer{
+    padding: 0 0 40px 0;
+}
+
+.drawer{
+    :global{
+        .ant-drawer-header{
+            padding-right: 0 !important;
+        }
+        .ant-drawer-header-title{
+            justify-content: flex-end;
+            flex-direction: row-reverse;
+        }
     }
 }

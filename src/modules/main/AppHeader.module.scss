@@ -54,15 +54,15 @@
         border-bottom: none;
     }
     .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected{
-        color: var(--salmon-pink);
+        color: var(--color-primary);
     }
     .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
-        border-bottom-color: var(--salmon-pink);
+        border-bottom-color: var(--color-primary);
     }
     .ant-menu-light.ant-menu-horizontal >.ant-menu-item-active::after{
-        border-bottom-color: var(--salmon-pink)!important;
+        border-bottom-color: var(--color-primary)!important;
     }
     .ant-menu-item:hover{
-        color: var(--salmon-pink)!important;
+        color: var(--color-primary)!important;
     }
 }
