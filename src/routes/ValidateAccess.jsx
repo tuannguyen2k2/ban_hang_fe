@@ -1,19 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
-import { accessRouteTypeEnum } from '../constants';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import routes from '.';
-import MainLayout from '../modules/main/MainLayout';
-import PublicLayout from '../modules/main/PublicLayout';
+import { accessRouteTypeEnum } from '../constants';
 
-const ValidateAccess = ({
-    authRequire,
-    component: Component,
-    componentProps,
-    isAuthenticated,
-    layout,
-    pageOptions,
-}) => {
+const ValidateAccess = ({ authRequire, component: Component, componentProps, isAuthenticated, pageOptions }) => {
     const location = useLocation();
     const getRedirect = (authRequire) => {
         if (authRequire === accessRouteTypeEnum.NOT_LOGIN && isAuthenticated) {

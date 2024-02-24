@@ -3,7 +3,6 @@ import { Routes, BrowserRouter, Route, Outlet } from 'react-router-dom';
 import AppNavigate from '../modules/main/AppNavigate';
 
 import routes from '.';
-import MainLayout from '../modules/main/MainLayout';
 import ValidateAccess from './ValidateAccess';
 import Loading from '../components/form/loading';
 import useAuth from '../hooks/useAuth';

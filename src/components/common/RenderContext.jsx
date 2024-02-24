@@ -6,7 +6,11 @@ const RenderContext = ({ layout, components, layoutProps, ...props }) => {
     const { isMobile } = useDevices();
     const ComponentLayout = layout?.defaultTheme || DefaultLayout;
     const ComponentRender = isMobile ? components?.mobile?.defaultTheme : components?.desktop?.defaultTheme;
-    return <ComponentLayout layoutProps={layoutProps} />;
+    return (
+        <ComponentLayout layoutProps={layoutProps}>
+            <ComponentRender {...props} />
+        </ComponentLayout>
+    );
 };
 
 export default RenderContext;

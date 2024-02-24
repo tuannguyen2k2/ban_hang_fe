@@ -1,18 +1,6 @@
-import { DevelopingPage } from '../../components/pages/DevelopingPage';
-import PageWrapper from '../../layouts/PageWrapper';
-import locales from '../../locales';
+import RenderContext from '../../components/common/RenderContext';
 const OrderListPage = () => {
-    const breadcrumbs = [
-        {
-            breadcrumbName: locales.order,
-        },
-    ];
-
-    return (
-        <PageWrapper breadcrumbs={breadcrumbs}>
-            <DevelopingPage />
-        </PageWrapper>
-    );
+    return <RenderContext />;
 };
 
 export default OrderListPage;

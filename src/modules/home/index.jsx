@@ -1,8 +1,7 @@
-import { Navigate } from 'react-router-dom';
-import routes from '../../routes';
+import RenderContext from '../../components/common/RenderContext';
 
 const HomePage = () => {
-    return <Navigate to={routes.categoryListPage.path} />;
+    return <RenderContext />;
 };
 
 export default HomePage;

@@ -30,6 +30,7 @@ export const storageKeys = {
     USER_ROLE: `${appName}-user-role`,
     USER_ACCESS_TOKEN: `${appName}-user-access-token`,
     USER_REFRESH_TOKEN: `${appName}-user-refresh-token`,
+    NAV_MENU: `nav-menu`,
 };
 
 export const loadingType = {
