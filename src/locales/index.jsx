@@ -1,4 +1,5 @@
 const locales = {
+    allProduct: 'Toàn bộ sản phẩm',
     searchProductPlaceHolder: 'Tìm kiếm sản phẩm ...',
     introduction: 'Giới thiệu',
     store: 'Cửa hàng',

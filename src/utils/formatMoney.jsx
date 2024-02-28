@@ -1,5 +1,5 @@
 import { currencyPositions } from '../constants';
-
+import styles from './utils.module.scss';
 export const formatMoney = (value, setting = {}) => {
     if ((value || value === 0) && !isNaN(value)) {
         const groupSeparator = setting.groupSeparator || '.';
@@ -18,7 +18,12 @@ export const formatMoney = (value, setting = {}) => {
         if (currencyPosition === currencyPositions.FRONT) {
             return `${currency} ${value}`;
         } else {
-            return `${value} ${currency}`;
+            return (
+                <bdi className={styles.formatMoney}>
+                    {value}
+                    <span className={styles.currency}>{currency}</span>
+                </bdi>
+            );
         }
     }
     return '';

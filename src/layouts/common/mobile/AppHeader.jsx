@@ -10,6 +10,7 @@ import Search from './search/Search';
 import logo from '/public/logo.ico';
 import { Link } from 'react-router-dom';
 import { storageKeys } from '../../../constants';
+import NavSider from '../NavSider';
 
 const AppHeader = () => {
     const [openSearch, setOpenSearch] = useState(false);

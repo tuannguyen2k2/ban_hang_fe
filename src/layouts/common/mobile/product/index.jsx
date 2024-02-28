@@ -1,37 +1,47 @@
 /* eslint-disable react/prop-types */
-import { Col, Flex, Image, Menu, Row } from 'antd';
-import styles from './Product.module.scss';
-import { formatMoney } from '../../../../utils/formatMoney';
+import { Col, Flex, Image, Row } from 'antd';
 import { CURRENCY_UNIT } from '../../../../constants';
-import SubMenu from 'antd/es/menu/SubMenu';
-import { useState } from 'react';
-import SkeletonComponent from './Skeleton';
-import locales from '../../../../locales';
+import { formatMoney } from '../../../../utils/formatMoney';
 import NavSider from '../../NavSider';
-const ProductComponent = ({ loading, listProduct }) => {
+import styles from './Product.module.scss';
+import SkeletonMobile from './Skeleton';
+import { useEffect, useState } from 'react';
+const ProductMobile = ({ loading, listProduct }) => {
+    const [products, setProducts] = useState();
+    useEffect(() => {
+        if (listProduct?.length > 0) {
+            const isEven = Math.ceil(listProduct.length % 2) != 1;
+            if (!isEven) {
+                listProduct.push({
+                    _id: null,
+                    image: [null],
+                });
+            }
+            setProducts(listProduct);
+        }
+    }, [listProduct]);
     return (
         <Flex justify='flex-end' className={styles.wrapper}>
-            <NavSider className={styles.navSider} />
             {loading ? (
-                <SkeletonComponent />
+                <SkeletonMobile />
             ) : (
                 <Flex vertical justify='center' className={styles.wrapperProduct}>
-                    {listProduct &&
-                        Array(4)
+                    {products &&
+                        Array(8)
                             .fill()
                             .map((_, rowIndex) => (
-                                <Row key={rowIndex} gutter={30} className={styles.row}>
-                                    {listProduct.slice(rowIndex * 4, rowIndex * 4 + 4)?.map((item) => (
-                                        <Col key={item?._id} span={6}>
+                                <Row key={rowIndex} gutter={2} className={styles.row}>
+                                    {products.slice(rowIndex * 2, rowIndex * 2 + 2)?.map((item) => (
+                                        <Col key={item?._id} span={20}>
                                             <Flex className={styles.item} vertical>
                                                 <Image
                                                     className={styles.itemImage}
-                                                    src={item.image[0]?.url}
+                                                    src={item?.image[0]?.url}
                                                     preview={false}
                                                     loading='lazy'
                                                 />
                                                 <Flex vertical style={{ padding: '0 10px' }}>
-                                                    <span className={styles.itemName}>{item.name}</span>
+                                                    <span className={styles.itemName}>{item?.name}</span>
                                                     <span className={styles.itemPrice}>
                                                         {formatMoney(item?.price, {
                                                             currency: CURRENCY_UNIT,
@@ -51,4 +61,4 @@ const ProductComponent = ({ loading, listProduct }) => {
     );
 };
 
-export default ProductComponent;
+export default ProductMobile;

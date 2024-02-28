@@ -1,6 +1,8 @@
 .main {
+    display: flex;
+    justify-content: center;
     min-height: 85vh;
     color: var(--text-color);
     overflow: hidden;
-    padding: var(--padding-page);
+    background-color: var( --background--primary);
 }

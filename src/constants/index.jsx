@@ -17,7 +17,7 @@ export const navigateTypeEnum = {
 
 export const apiUrl = import.meta.env.VITE_API;
 
-export const CURRENCY_UNIT = 'đ';
+export const CURRENCY_UNIT = '₫';
 
 export const currencyPositions = {
     FRONT: 0,

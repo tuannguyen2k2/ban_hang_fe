@@ -35,14 +35,13 @@
         }
     }
     .itemMenuRight:nth-child(3){
-        margin-right: 0px;
+        margin-right: 8px;
     }
     .menuButton{
         border: none;
         background-color: transparent;
     }
-}
-
+    
 :global{
     .ant-menu-horizontal{
         border-bottom: none;
@@ -59,6 +58,8 @@
     .ant-menu-item:hover{
         color: var(--color-primary)!important;
     }
+}
+
 }
 
 //Drawer

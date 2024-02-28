@@ -1,7 +1,91 @@
-.wrapper{
-    width: 100%;
-    .row{
-        display: flex;
-        justify-content: center;
+:global{
+    --background-color-active: #f1f1f1!important;
+    .ant-menu-vertical{
+        .ant-menu-item-selected{
+            color: var(--color-primary)!important;
+            background-color: #fff!important;
+        }
+        
+    } 
+    .ant-menu-light:not(.ant-menu-horizontal) .ant-menu-submenu-title:active{
+        background-color: var(--background-color-active);
+    }
+    .ant-menu-light>.ant-menu:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
+        background-color: var(--background-color-active);
     }
 }
+.wrapper{
+    max-width: 1320px;
+    width: 1320px;
+    padding: 0 90px;
+    margin: 0 auto;
+    .navSider{
+        width: 20%;
+        @media (max-width: 1280px) {
+            display: none;
+        }
+    }
+    :global{
+        .ant-menu-light.ant-menu-root.ant-menu-vertical{
+            border: none;
+        }
+        .ant-menu-light .ant-menu-submenu-selected >.ant-menu-submenu-title{
+            color: var(--color-primary);
+        }
+        .ant-menu-item-selected{
+            color: var(--color-primary)!important;
+        }
+        
+    }
+    .wrapperProduct{
+    width: 80%;
+    height: fit-content;
+    padding: 20px 0;
+    @media (max-width: 1280px) {
+        width: 100%;
+        align-items: center;
+        .row{
+            padding-left: 80px;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        
+    }
+    @media (max-width: 1024px) {
+        .row{
+            padding-left: 30px;
+        }
+    }
+    .item{
+        width: 200px;
+        background: white;
+        max-width: 220px;
+        max-height: 370px;
+        border-radius: var(--border-radius-product);
+        margin-bottom: 16px;
+        @media (max-width: 1024px) {
+            width: 170px;
+        }
+        @media (max-width: 912px) {
+            width: 140px;
+        }
+        .itemImage, .skeletonImage{
+            border-radius: var(--border-radius-product);
+            margin-bottom: 10px;
+        }
+        
+        .itemName{
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            height: fit-content;
+            margin-bottom: 10px;
+        }
+    }
+    :global{
+        .ant-col{
+            flex: 0 0 0;
+        }
+    }
+}}
