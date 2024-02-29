@@ -1,14 +1,23 @@
 /* eslint-disable react/prop-types */
-import { Col, Flex, Image, Menu, Row } from 'antd';
+import { Col, Flex, Image, Menu, Pagination, Row } from 'antd';
 import styles from './Product.module.scss';
 import { formatMoney } from '../../../../utils/formatMoney';
-import { CURRENCY_UNIT } from '../../../../constants';
+import { CURRENCY_UNIT, DEFAULT_PAGE_SIZE } from '../../../../constants';
 import SubMenu from 'antd/es/menu/SubMenu';
 import { useState } from 'react';
 import SkeletonComponent from './Skeleton';
 import locales from '../../../../locales';
 import NavSider from '../../NavSider';
-const ProductComponent = ({ loading, listProduct }) => {
+import { useSearchParams } from 'react-router-dom';
+const ProductComponent = ({ loading, listProduct, totalElements, totalPages, currentPage }) => {
+    let [searchParams, setSearchParams] = useSearchParams();
+    const handleChangePage = (current) => {
+        const params = {};
+        for (const [key, value] of searchParams.entries()) {
+            params[key] = value;
+        }
+        setSearchParams({ ...params, page: current });
+    };
     return (
         <Flex justify='flex-end' className={styles.wrapper}>
             <NavSider className={styles.navSider} />
@@ -45,6 +54,15 @@ const ProductComponent = ({ loading, listProduct }) => {
                                     ))}
                                 </Row>
                             ))}
+                    {totalPages > 1 && (
+                        <Pagination
+                            className={styles.pagination}
+                            total={totalElements}
+                            pageSize={DEFAULT_PAGE_SIZE}
+                            current={currentPage}
+                            onChange={handleChangePage}
+                        />
+                    )}
                 </Flex>
             )}
         </Flex>

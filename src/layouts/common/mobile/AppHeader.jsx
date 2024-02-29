@@ -30,7 +30,7 @@ const AppHeader = () => {
                     <LuMenu size={28} />
                 </button>
                 <Drawer
-                    title={<Image src={logo} width={45} />}
+                    title={<Image preview={false} src={logo} width={45} />}
                     placement='left'
                     onClose={onClose}
                     open={openMenu}
@@ -38,13 +38,16 @@ const AppHeader = () => {
                     className={styles.drawer}
                 >
                     <Flex vertical className={styles.wrapperContentDrawer}>
-                        {navMenuConfig.map((item) => {
-                            return (
-                                <Link to={item?.path} key={item.key} className={styles.labelDrawer}>
-                                    {item.label}
-                                </Link>
-                            );
-                        })}
+                        <NavSider mode='inline' className={styles.navSider} setOpenMenu={setOpenMenu} />
+                        <Flex vertical className={styles.menu}>
+                            {navMenuConfig.map((item) => {
+                                return (
+                                    <Link to={item?.path} key={item.key} className={styles.labelDrawer}>
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                        </Flex>
                     </Flex>
                 </Drawer>
                 <img src={logo} alt='logo' className={styles.logo} />

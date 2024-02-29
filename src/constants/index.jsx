@@ -1,5 +1,4 @@
-export const DEFAULT_TABLE_ITEM_SIZE = 10;
-export const DEFAULT_TABLE_PAGE_START = 1;
+export const DEFAULT_PAGE_SIZE = 16;
 
 export const DEFAULT_FORMAT_TIME = 'DD/MM/YYYY HH:mm:ss';
 

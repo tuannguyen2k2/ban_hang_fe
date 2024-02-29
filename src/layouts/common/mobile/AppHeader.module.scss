@@ -67,11 +67,17 @@
 .wrapperContentDrawer{
     line-height: var(--line-height-primary);
     font-weight: 600;
-    padding: 10px 0 0 20px;
+}
+.menu{
+    border-top: 1px solid rgba(5, 5, 5, 0.06);
+    margin-top: 10px;
+    padding-top: 10px;
 }
 .labelDrawer{
     padding: 0 0 40px 0;
+   
 }
+
 .drawer{
     :global{
         .ant-drawer-header{

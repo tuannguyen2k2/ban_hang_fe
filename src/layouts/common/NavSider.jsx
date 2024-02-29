@@ -7,7 +7,8 @@ import useFetch from '../../hooks/useFetch';
 import apiConfig from '../../constants/apiConfig';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../routes/index';
-const NavSider = ({ mode = 'vertical', className }) => {
+import styles from './NavSider.module.scss';
+const NavSider = ({ mode = 'vertical', className, setOpenMenu }) => {
     const searchParams = new URLSearchParams(window.location.search);
     const categoryId = searchParams.get('categoryId');
     const kindId = searchParams.get('kindId');
@@ -28,6 +29,7 @@ const NavSider = ({ mode = 'vertical', className }) => {
             setSelectedKey(locales.allProduct);
         }
     }, [categoryId, kindId]);
+
     const handleOpenChange = (keys) => {
         // Đảm bảo chỉ mở một submenu duy nhất
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -39,12 +41,14 @@ const NavSider = ({ mode = 'vertical', className }) => {
     };
     const handleClickAllProduct = (e) => {
         navigate(routes.productPage.path);
+        if (mode != 'vertical') setOpenMenu(false);
     };
     const handleClickCategory = (categoryId) => {
         navigate(routes.productPage.path + `?categoryId=${categoryId}`);
     };
     const handleClickKind = (kindId) => {
         navigate(routes.productPage.path + `?kindId=${kindId}`);
+        if (mode != 'vertical') setOpenMenu(false);
     };
     const renderSubMenu = (menuItems) => {
         return menuItems?.map((menuItem) => {
