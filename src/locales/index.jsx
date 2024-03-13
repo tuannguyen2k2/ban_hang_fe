@@ -1,4 +1,8 @@
 const locales = {
+    signUp: 'Đăng ký',
+    information: 'Cảm ơn bạn!',
+    logoutSuccess: 'Bạn đã đăng xuất thành công',
+    profile: 'Thông tin cá nhân',
     allProduct: 'Toàn bộ sản phẩm',
     searchProductPlaceHolder: 'Tìm kiếm sản phẩm ...',
     introduction: 'Giới thiệu',

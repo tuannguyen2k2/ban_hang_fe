@@ -1,20 +1,27 @@
 /* eslint-disable react/prop-types */
-import locales from '../../../locales';
-import { Badge, Drawer, Flex, Image, Menu } from 'antd';
+import { Badge, Drawer, Dropdown, Flex, Image, Menu } from 'antd';
 import { Header } from 'antd/es/layout/layout';
+import { useMemo, useState } from 'react';
 import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 import { LuMenu } from 'react-icons/lu';
+import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
+import navMenuConfig from '../../../constants/menuConfig';
+import useNotification from '../../../hooks/useNotification';
+import locales from '../../../locales';
+import { removeCacheToken } from '../../../services/userService';
+import NavSider from '../NavSider';
 import styles from './AppHeader.module.scss';
 import Search from './search/Search';
 import logo from '/public/logo.ico';
-import { useMemo, useState } from 'react';
-import navMenuConfig from '../../../constants/menuConfig';
-import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { storageKeys } from '../../../constants';
-import NavSider from '../NavSider';
+import useAuth from '../../../hooks/useAuth';
+import useFetch from '../../../hooks/useFetch';
+import apiConfig from '../../../constants/apiConfig';
 const AppHeader = () => {
+    const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const notification = useNotification();
+    const { isAuthenticated } = useAuth();
 
     const activeNav = useMemo(() => {
         const activeNav = findActiveNav(navMenuConfig);
@@ -64,13 +71,41 @@ const AppHeader = () => {
         // return defaultOpenNav;
     }
 
-    const [openMenu, setOpenMenu] = useState(false);
     const showMenu = () => {
         setOpenMenu(true);
     };
     const onClose = () => {
         setOpenMenu(false);
     };
+
+    const handleLogout = () => {
+        removeCacheToken();
+        window.location.reload();
+        notification({
+            type: 'success',
+            title: locales.information,
+            message: locales.logoutSuccess,
+        });
+    };
+
+    const itemAuthDropDown = [
+        {
+            key: isAuthenticated ? locales.profile : locales.signIn,
+            label: isAuthenticated ? (
+                <Link to='/profile'>{locales.profile}</Link>
+            ) : (
+                <Link to='/sign-in'>{locales.signIn}</Link>
+            ),
+        },
+        {
+            key: isAuthenticated ? locales.logout : locales.signUp,
+            label: isAuthenticated ? (
+                <div onClick={handleLogout}>{locales.logout}</div>
+            ) : (
+                <Link to='/sign-up'>{locales.signUp}</Link>
+            ),
+        },
+    ];
 
     return (
         <Header className={styles.appHeader} style={{ background: 'white' }}>
@@ -87,7 +122,7 @@ const AppHeader = () => {
                         width={300}
                         className={styles.drawer}
                     >
-                        <NavSider mode='inline' className={styles.navSider} />
+                        <NavSider mode='inline' className={styles.navSider} setOpenMenu={setOpenMenu} />
                         <Flex vertical className={styles.wrapperContentDrawer}>
                             {navMenuConfig.map((item) => {
                                 return (
@@ -131,9 +166,11 @@ const AppHeader = () => {
                             <IoBagHandleOutline size={24} />
                         </Badge>
                     </button>
-                    <button className={styles.itemMenuRight}>
-                        <IoPersonOutline size={24} />
-                    </button>
+                    <Dropdown trigger={['click']} overlay={<Menu items={itemAuthDropDown} />} placement='bottom'>
+                        <button className={styles.itemMenuRight}>
+                            <IoPersonOutline size={24} />
+                        </button>
+                    </Dropdown>
                 </Flex>
             </div>
         </Header>

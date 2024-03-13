@@ -3,6 +3,6 @@ export default {
     productPage: {
         path: '/product',
         component: ProductPage,
-        auth: true,
+        auth: false,
     },
 };

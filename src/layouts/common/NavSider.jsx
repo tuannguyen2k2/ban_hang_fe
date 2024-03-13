@@ -8,18 +8,16 @@ import apiConfig from '../../constants/apiConfig';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../routes/index';
 import styles from './NavSider.module.scss';
-const NavSider = ({ mode = 'vertical', className, setOpenMenu }) => {
+import { useSelector } from 'react-redux';
+import { categorySelector } from '../../selector';
+const NavSider = ({ loadingProduct, mode = 'vertical', className, setOpenMenu }) => {
     const searchParams = new URLSearchParams(window.location.search);
     const categoryId = searchParams.get('categoryId');
     const kindId = searchParams.get('kindId');
-    const { data: listCategory } = useFetch(apiConfig.category.getList, {
-        immediate: true,
-        mappingData: (res) => res.data.content,
-    });
     const [selectedKey, setSelectedKey] = useState(locales.allProduct);
     const [openKeys, setOpenKeys] = useState([]);
     const navigate = useNavigate();
-
+    const category = useSelector(categorySelector);
     useEffect(() => {
         if (categoryId) {
             setSelectedKey(categoryId);
@@ -79,10 +77,12 @@ const NavSider = ({ mode = 'vertical', className, setOpenMenu }) => {
             onOpenChange={handleOpenChange}
             selectedKeys={mode == 'vertical' && [selectedKey]}
         >
-            <Menu.Item key={locales.allProduct} onClick={handleClickAllProduct}>
-                {locales.allProduct.toUpperCase()}
-            </Menu.Item>
-            {renderSubMenu(listCategory)}
+            {!loadingProduct && !category?.loadingCategory && (
+                <Menu.Item key={locales.allProduct} onClick={handleClickAllProduct}>
+                    {locales.allProduct.toUpperCase()}
+                </Menu.Item>
+            )}
+            {renderSubMenu(category?.listCategory)}
         </Menu>
     );
 };

@@ -3,8 +3,12 @@ export const appSlice = createSlice({
     name: 'app',
     initialState: {
         appLoading: 0,
+        category: { listCategory: [], loadingCategory: false },
     },
     reducers: {
+        setCategory: (state, action) => {
+            state.category = action.payload;
+        },
         showAppLoading: (state, action) => {
             state.appLoading++;
         },
@@ -21,5 +25,5 @@ export const appSlice = createSlice({
     },
 });
 
-export const { showAppLoading, hideAppLoading, toggleActionLoading } = appSlice.actions;
+export const { setCategory, showAppLoading, hideAppLoading, toggleActionLoading } = appSlice.actions;
 export default appSlice.reducer;

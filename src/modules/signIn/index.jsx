@@ -13,8 +13,11 @@ import useNotification from '../../hooks/useNotification';
 import useFetchAction from '../../hooks/useFetchAction';
 import { getProfile } from '../../store/slice/accountSlice';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../routes';
 export const SignInPage = () => {
     const { execute, loading } = useFetch(apiConfig.auth.signIn);
+    const navigate = useNavigate();
     const { execute: executeGetProfile } = useFetchAction(getProfile, {
         loading: useFetchAction.LOADING_TYPE.APP,
     });
@@ -26,6 +29,7 @@ export const SignInPage = () => {
                 setCacheAccessToken(res?.data?.access_token);
                 setData(storageKeys.USER_ROLE, res?.data?.role);
                 executeGetProfile();
+                navigate(routes.homePage.path);
             },
             onError: (error) => {
                 console.log(error);

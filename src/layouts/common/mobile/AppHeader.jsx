@@ -11,6 +11,8 @@ import logo from '/public/logo.ico';
 import { Link } from 'react-router-dom';
 import { storageKeys } from '../../../constants';
 import NavSider from '../NavSider';
+import useFetch from '../../../hooks/useFetch';
+import apiConfig from '../../../constants/apiConfig';
 
 const AppHeader = () => {
     const [openSearch, setOpenSearch] = useState(false);
@@ -22,7 +24,6 @@ const AppHeader = () => {
     const onClose = () => {
         setOpenMenu(false);
     };
-
     return (
         <Header className={styles.appHeader} style={{ background: 'white' }}>
             <Flex align='center'>

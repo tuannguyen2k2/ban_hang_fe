@@ -25,9 +25,6 @@ const SkeletonComponent = () => {
                                                 <Skeleton width='90%' className={styles.itemName} />
                                                 <Skeleton width='40%' />
                                             </span>
-                                            {/* <span className={styles.itemPrice}>
-                                                <Skeleton active />
-                                            </span> */}
                                         </Flex>
                                     </Flex>
                                 </Col>

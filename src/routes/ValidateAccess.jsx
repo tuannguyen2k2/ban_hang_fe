@@ -8,7 +8,7 @@ const ValidateAccess = ({ authRequire, component: Component, componentProps, isA
     const location = useLocation();
     const getRedirect = (authRequire) => {
         if (authRequire === accessRouteTypeEnum.NOT_LOGIN && isAuthenticated) {
-            return routes.homePage.path;
+            return false;
         }
 
         if (authRequire === accessRouteTypeEnum.REQUIRE_LOGIN && !isAuthenticated) {

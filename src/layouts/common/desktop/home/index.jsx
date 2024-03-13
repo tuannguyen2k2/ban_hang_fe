@@ -12,7 +12,11 @@ const HomeComponent = ({ listBanner }) => {
             {listBanner?.map((banner) => {
                 return (
                     <div key={banner?.url}>
-                        <Image src={banner?.url} preview={false} />
+                        <Image
+                            src={banner?.url}
+                            preview={false}
+                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                        />
                     </div>
                 );
             })}
