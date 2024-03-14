@@ -160,7 +160,7 @@ const DetailProductComponent = ({ detailProduct }) => {
             </div>
             <div className={styles.bottomDetailProductWrapper}>
                 <div className={styles.descriptionLabel}>{locales.descriptionProduct}</div>
-                <div>{detailProduct?.description}</div>
+                <div dangerouslySetInnerHTML={{ __html: detailProduct?.description }}></div>
             </div>
         </div>
     );
