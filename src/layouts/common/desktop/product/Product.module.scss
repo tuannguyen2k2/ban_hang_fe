@@ -81,6 +81,10 @@
             text-overflow: ellipsis;
             height: fit-content;
             margin-bottom: 10px;
+            cursor: pointer;
+            &:hover{
+                color: var(--color-primary);
+            }
         }
     }
     :global{

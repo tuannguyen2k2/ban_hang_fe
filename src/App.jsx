@@ -1,17 +1,20 @@
 import { ConfigProvider } from 'antd';
 import AppRoutes from './routes/routes';
+import { ThemeProvider } from 'react-bootstrap';
 
 function App() {
     return (
-        <ConfigProvider
-            theme={{
-                token: {
-                    fontFamily: 'Mulish',
-                },
-            }}
-        >
-            <AppRoutes />
-        </ConfigProvider>
+        <ThemeProvider>
+            <ConfigProvider
+                theme={{
+                    token: {
+                        fontFamily: 'Mulish',
+                    },
+                }}
+            >
+                <AppRoutes />
+            </ConfigProvider>
+        </ThemeProvider>
     );
 }
 

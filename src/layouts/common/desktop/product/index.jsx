@@ -8,12 +8,14 @@ import { useEffect, useState } from 'react';
 import SkeletonComponent from './Skeleton';
 import locales from '../../../../locales';
 import NavSider from '../../NavSider';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import useFetch from '../../../../hooks/useFetch';
 import apiConfig from '../../../../constants/apiConfig';
+import routes from '../../../../routes';
 const ProductComponent = ({ loading, listProduct, totalElements, totalPages, currentPage }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [loadingProduct, setLoadingProduct] = useState(true);
+    const navigate = useNavigate();
     const [loadingImage, setLoadingImage] = useState(true);
     const handleChangePage = (current) => {
         const params = {};
@@ -30,6 +32,9 @@ const ProductComponent = ({ loading, listProduct, totalElements, totalPages, cur
     useEffect(() => {
         !loading && setLoadingProduct(false);
     }, [loading]);
+    const handleClickItemName = (id) => {
+        navigate(`/detail-product/${id}`);
+    };
     return (
         <Flex justify='flex-end' className={styles.wrapper}>
             <NavSider className={styles.navSider} loadingProduct={loadingProduct} />
@@ -53,7 +58,12 @@ const ProductComponent = ({ loading, listProduct, totalElements, totalPages, cur
                                                     onLoad={() => handleOnLoad(item.id)}
                                                 />
                                                 <Flex vertical style={{ padding: '0 10px' }}>
-                                                    <span className={styles.itemName}>{item.name}</span>
+                                                    <span
+                                                        className={styles.itemName}
+                                                        onClick={() => handleClickItemName(item?._id)}
+                                                    >
+                                                        {item.name}
+                                                    </span>
                                                     <span className={styles.itemPrice}>
                                                         {formatMoney(item?.price, {
                                                             currency: CURRENCY_UNIT,

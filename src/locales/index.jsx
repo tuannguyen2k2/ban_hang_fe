@@ -1,4 +1,8 @@
 const locales = {
+    color: 'Màu sắc',
+    size: 'Kích thước',
+    buyNow: 'Mua ngay',
+    addCart: 'Thêm vào giỏ hàng',
     signUp: 'Đăng ký',
     information: 'Cảm ơn bạn!',
     logoutSuccess: 'Bạn đã đăng xuất thành công',
