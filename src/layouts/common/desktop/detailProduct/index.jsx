@@ -1,21 +1,38 @@
 /* eslint-disable react/prop-types */
-import { Carousel, Flex, Image, InputNumber, Space } from 'antd';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styles from './DetailProduct.module.scss';
+import { useSpring, animated } from '@react-spring/web';
+import { Alert, Flex, Image, InputNumber, Space } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import { CURRENCY_UNIT } from '../../../../constants';
-import { formatMoney } from '../../../../utils/formatMoney';
+import { Button, ToggleButton } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import { CART_EXPIRATION_DATE, CURRENCY_UNIT } from '../../../../constants';
 import locales from '../../../../locales';
-import { Button, ButtonGroup, Form, ToggleButton } from 'react-bootstrap';
+import { setCart } from '../../../../store/slice/appSlice';
+import { formatMoney } from '../../../../utils/formatMoney';
+import { getData, setData } from '../../../../utils/localStorage';
+import { PiShoppingCartLight, PiShirtFolded } from 'react-icons/pi';
+import styles from './DetailProduct.module.scss';
 const DetailProductComponent = ({ detailProduct }) => {
     const [nav1, setNav1] = useState(null);
     const [nav2, setNav2] = useState(null);
-    const [sizeSelected, setSizeSelected] = useState('');
-    const [colorSelected, setColorSelected] = useState('');
+    const [sizeSelected, setSizeSelected] = useState(null);
+    const [colorSelected, setColorSelected] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [visibleAlert, setVisibleAlert] = useState({ visible: false, alertMessage: '' });
+    const dispatch = useDispatch();
 
+    const fadeProps = useSpring({
+        opacity: visibleAlert.visible ? 1 : 0,
+        config: { duration: 300 },
+    });
+    useEffect(() => {
+        const timeOutAlert = setTimeout(() => {
+            setVisibleAlert({ visible: false, alertMessage: visibleAlert.alertMessage });
+        }, 2000);
+        return () => clearTimeout(timeOutAlert);
+    }, [visibleAlert]);
     const handleIncrease = () => {
         if (quantity < 99) {
             setQuantity(quantity + 1);
@@ -34,6 +51,65 @@ const DetailProductComponent = ({ detailProduct }) => {
         setNav1(sliderRef1);
         setNav2(sliderRef2);
     }, []);
+
+    const handleAddCart = () => {
+        if (!colorSelected) {
+            setVisibleAlert({ visible: true, alertMessage: locales.alertColorSelect });
+            return;
+        }
+        if (!sizeSelected) {
+            setVisibleAlert({ visible: true, alertMessage: locales.alertSizeSelect });
+            return;
+        }
+        const cartInfo = getData('cart');
+        if (!cartInfo) {
+            const dataCart = {
+                data: {
+                    totalQuantity: quantity,
+                    productList: [
+                        {
+                            id: detailProduct?._id,
+                            name: detailProduct?.name,
+                            image: detailProduct?.image[0]?.url,
+                            price: detailProduct?.price,
+                            quantity: quantity,
+                            color: colorSelected,
+                            size: sizeSelected,
+                        },
+                    ],
+                    expires: CART_EXPIRATION_DATE,
+                },
+            };
+            setData('cart', dataCart);
+            dispatch(setCart({ notiAddCartSuccess: true, content: dataCart }));
+        } else {
+            cartInfo.data.totalQuantity = cartInfo?.data?.totalQuantity + quantity;
+            cartInfo.data.expires = CART_EXPIRATION_DATE;
+            let isDuplicate = false;
+            cartInfo?.data?.productList?.map((product) => {
+                if (product.id == detailProduct._id && product.color == colorSelected && product.size == sizeSelected) {
+                    product.quantity += quantity;
+                    isDuplicate = true;
+                }
+            });
+            if (!isDuplicate) {
+                cartInfo.data.productList = [
+                    {
+                        id: detailProduct?._id,
+                        name: detailProduct?.name,
+                        image: detailProduct?.image[0]?.url,
+                        price: detailProduct?.price,
+                        quantity: quantity,
+                        color: colorSelected,
+                        size: sizeSelected,
+                    },
+                    ...cartInfo.data.productList,
+                ];
+            }
+            setData('cart', cartInfo);
+            dispatch(setCart({ notiAddCartSuccess: true, content: cartInfo }));
+        }
+    };
 
     return (
         <div className={styles.detailProductWrapper}>
@@ -154,7 +230,9 @@ const DetailProductComponent = ({ detailProduct }) => {
                             </Button>
                         </Flex>
                     </Space>
-                    <Button className={styles.addCartButton}>{locales.addCart}</Button>
+                    <Button className={styles.addCartButton} onClick={handleAddCart}>
+                        <PiShoppingCartLight size={20} /> <span style={{ marginLeft: '5px' }}>{locales.addCart}</span>
+                    </Button>
                     <Button className={styles.buyNowButton}>{locales.buyNow}</Button>
                 </Flex>
             </div>
@@ -162,6 +240,9 @@ const DetailProductComponent = ({ detailProduct }) => {
                 <div className={styles.descriptionLabel}>{locales.descriptionProduct}</div>
                 <div dangerouslySetInnerHTML={{ __html: detailProduct?.description }}></div>
             </div>
+            <animated.div style={fadeProps} className={styles.alert}>
+                <Alert message={visibleAlert.alertMessage} type='error' />
+            </animated.div>
         </div>
     );
 };

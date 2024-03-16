@@ -1,23 +1,31 @@
 /* eslint-disable react/prop-types */
-import { Badge, Drawer, Flex, Image } from 'antd';
+import { Badge, Drawer, Flex, Image, Tooltip } from 'antd';
 import { Header } from 'antd/es/layout/layout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoBagHandleOutline, IoPersonOutline, IoSearchOutline } from 'react-icons/io5';
 import { LuMenu } from 'react-icons/lu';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import navMenuConfig from '../../../constants/menuConfig';
+import { cartSelector } from '../../../selector';
+import { setCart } from '../../../store/slice/appSlice';
+import NavSider from '../NavSider';
 import styles from './AppHeader.module.scss';
 import Search from './search/Search';
 import logo from '/public/logo.ico';
-import { Link } from 'react-router-dom';
-import { storageKeys } from '../../../constants';
-import NavSider from '../NavSider';
-import useFetch from '../../../hooks/useFetch';
-import apiConfig from '../../../constants/apiConfig';
+import locales from '../../../locales';
 
 const AppHeader = () => {
     const [openSearch, setOpenSearch] = useState(false);
-
     const [openMenu, setOpenMenu] = useState(false);
+    const cartInfo = useSelector(cartSelector);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const timeOutOpenToolTipCart = setTimeout(() => {
+            dispatch(setCart({ ...cartInfo, notiAddCartSuccess: false }));
+        }, [3000]);
+        return () => clearTimeout(timeOutOpenToolTipCart);
+    }, [cartInfo]);
     const showMenu = () => {
         setOpenMenu(true);
     };
@@ -57,11 +65,13 @@ const AppHeader = () => {
                 <button className={styles.itemMenuRight} onClick={() => setOpenSearch(true)}>
                     <IoSearchOutline size={24} />
                 </button>
-                <button className={styles.itemMenuRight}>
-                    <Badge count={1} size='small'>
-                        <IoBagHandleOutline size={24} />
-                    </Badge>
-                </button>
+                <Tooltip open={cartInfo.notiAddCartSuccess} title={locales.addCartSuccess} placement={'bottom'}>
+                    <button className={styles.itemMenuRight}>
+                        <Badge count={cartInfo?.content?.data?.totalQuantity || 0} size='small' showZero>
+                            <IoBagHandleOutline size={24} />
+                        </Badge>
+                    </button>
+                </Tooltip>
                 <button className={styles.itemMenuRight}>
                     <IoPersonOutline size={24} />
                 </button>

@@ -1,4 +1,7 @@
 const locales = {
+    addCartSuccess: 'Đã thêm sản phẩm vào giỏ hàng',
+    alertColorSelect: 'Bạn chưa chọn màu sắc',
+    alertSizeSelect: 'Bạn chưa chọn kích thước',
     color: 'Màu sắc',
     size: 'Kích thước',
     buyNow: 'Mua ngay',

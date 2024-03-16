@@ -3,6 +3,7 @@ import RenderContext from '../../components/common/RenderContext';
 import apiConfig from '../../constants/apiConfig';
 import useFetch from '../../hooks/useFetch';
 import DetailProductComponent from '../../layouts/common/desktop/detailProduct';
+import DetailProductMobile from '../../layouts/common/mobile/detailProduct';
 
 const DetailProductPage = () => {
     const { id } = useParams();
@@ -11,7 +12,15 @@ const DetailProductPage = () => {
         mappingData: (res) => res.data,
         pathParams: { id },
     });
-    return <RenderContext components={{ desktop: { defaultTheme: DetailProductComponent } }} detailProduct={detail} />;
+    return (
+        <RenderContext
+            components={{
+                desktop: { defaultTheme: DetailProductComponent },
+                mobile: { defaultTheme: DetailProductMobile },
+            }}
+            detailProduct={detail}
+        />
+    );
 };
 
 export default DetailProductPage;

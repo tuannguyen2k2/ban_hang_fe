@@ -1,11 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getData } from '../../utils/localStorage';
 export const appSlice = createSlice({
     name: 'app',
     initialState: {
         appLoading: 0,
         category: { listCategory: [], loadingCategory: false },
+        cart: { notiAddCartSuccess: false, content: getData('cart') },
     },
     reducers: {
+        setCart: (state, action) => {
+            state.cart = action.payload;
+        },
         setCategory: (state, action) => {
             state.category = action.payload;
         },
@@ -25,5 +30,5 @@ export const appSlice = createSlice({
     },
 });
 
-export const { setCategory, showAppLoading, hideAppLoading, toggleActionLoading } = appSlice.actions;
+export const { setCart, setCategory, showAppLoading, hideAppLoading, toggleActionLoading } = appSlice.actions;
 export default appSlice.reducer;

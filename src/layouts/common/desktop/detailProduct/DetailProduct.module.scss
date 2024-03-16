@@ -2,7 +2,7 @@
     max-width: 1320px;
     width: 1320px;
     padding: 0 90px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .topDetailProductWrapper{
     display: flex;
@@ -83,6 +83,9 @@
             }
         }
         .addCartButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 44px;
             border-radius: 18px;
             background-color: white;
@@ -148,3 +151,18 @@
         border-bottom: 1px black solid;
     }
 }
+.alert{
+    width: fit-content;
+    position: fixed;
+    right: 21%;
+    top: 42%;
+    :global{
+        .ant-alert-message{
+            color: red;
+        }
+    }
+}
+.fade-out {
+    position: absolute;
+    transition: opacity 1s linear;
+  }

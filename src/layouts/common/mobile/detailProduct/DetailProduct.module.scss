@@ -1,0 +1,167 @@
+.detailProductWrapper{
+    max-width: 100vw;
+    width: 100vw;
+    margin: 80px auto 0;
+}
+.topDetailProductWrapper{
+    .slider{
+        width: 100%;
+    }
+}
+.bottomDetailProductWrapper{
+    --bg-color-btn-select: #f6f6f6;
+    --color-btn-select: black;
+    --bg-color-btn-select-hover:#f4bcc3db;
+    --border-quantity: 1px #D9D9D9 solid;
+    --size-quantity: 36px;
+    margin: 40px 20px;
+    .nameProduct{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .priceProduct{
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(42, 13, 41);
+    }
+    .colorButton, .colorButtonSelected{
+        display: flex;
+        height: 32px;
+        width: fit-content;
+        background-color: var(--bg-color-btn-select);
+        color: var(--color-btn-select);
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
+        padding: 2px 10px;
+        font-size: 13px;
+        border: none;
+        border-radius: 0;
+    }
+    .colorButtonSelected{
+        //Bootstrap
+        --bs-btn-active-bg: var(--color-primary);
+    }
+    .colorButton{
+        &:hover{
+            background-color:var(--bg-color-btn-select-hover);
+        }
+    }
+    .sizeButton, .sizeButtonSelected{
+        display: flex;
+        height: 32px;
+        width: 32px;
+        background-color: var(--bg-color-btn-select);
+        color: var(--color-btn-select);
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
+        padding: 2px;
+        font-size: 13px;
+        border: none;
+        border-radius: 0;
+    }
+    .sizeButtonSelected{
+        --bs-btn-active-bg:  var(--color-primary);
+    }
+    .sizeButton{
+        &:hover{
+            background-color:var(--bg-color-btn-select-hover);
+        }
+    }
+    .addCartButton{
+        --bs-btn-active-bg: white;
+        --bs-btn-active-border-color: var(--color-primary);
+        --bs-btn-active-color: var(--color-primary) ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        border-radius: 18px;
+        background-color: white;
+        color:  var(--color-primary) ;
+        border: 1px var(--color-primary) solid;
+        &:active{
+            background-color: white;
+            color:  var(--color-primary) ;
+            border: 1px var(--color-primary) solid;
+        }
+    }
+    .buyNowButton{
+        margin-top: 10px;
+        height: 44px;
+        background-color: var(--color-primary);
+        color: white;
+        border-radius: 18px;
+        border: none;
+        &:active{
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+        }
+    }
+    :global {
+        .ant-input-number .ant-input-number-input{
+            padding: 0;
+            display: flex;
+            width: 22px;
+            text-align: center;
+        }
+    }
+   .quantityInput{
+        border-radius: 0;
+        width: var(--size-quantity);
+        height:var(--size-quantity);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: var(--border-quantity);
+        border-left: none; 
+        border-right: none;
+   }
+    .quantityButton{
+        --bs-btn-disabled-bg: #ccc;
+        --bs-btn-disabled-border-color: #ccc;
+        --bs-btn-hover-bg: white;
+        --bs-btn-hover-border-color: #D9D9D9;
+        --bs-btn-hover-color: black;
+        --bs-btn-active-bg:  var(--color-primary);
+        --bs-btn-active-border-color: var(--color-primary);
+        padding: 0;
+        border-radius: 0;
+        width: var(--size-quantity);
+        height: var(--size-quantity);
+        background-color: white;
+        border: var(--border-quantity);
+        color: black;
+        &:active{
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+    }
+    .descriptionLabel{
+        font-weight: 600;
+        margin: 30px 0 10px;
+        border-bottom: 1px black solid;
+    }
+}
+.alert{
+    width: fit-content;
+    position: fixed;
+    right: 21%;
+    top: 42%;
+    :global{
+        .ant-alert-message{
+            color: red;
+        }
+    }
+}
+.fade-out {
+    position: absolute;
+    transition: opacity 1s linear;
+  }
+.description{
+    overflow: hidden;
+    overflow-wrap: break-word;
+}

@@ -1,27 +1,37 @@
 /* eslint-disable react/prop-types */
-import { Badge, Drawer, Dropdown, Flex, Image, Menu } from 'antd';
+import { Badge, Drawer, Dropdown, Flex, Image, Menu, Tooltip } from 'antd';
 import { Header } from 'antd/es/layout/layout';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 import { LuMenu } from 'react-icons/lu';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
 import navMenuConfig from '../../../constants/menuConfig';
+import useAuth from '../../../hooks/useAuth';
 import useNotification from '../../../hooks/useNotification';
 import locales from '../../../locales';
+import { cartSelector } from '../../../selector';
 import { removeCacheToken } from '../../../services/userService';
+import { getData } from '../../../utils/localStorage';
 import NavSider from '../NavSider';
 import styles from './AppHeader.module.scss';
 import Search from './search/Search';
 import logo from '/public/logo.ico';
-import useAuth from '../../../hooks/useAuth';
-import useFetch from '../../../hooks/useFetch';
-import apiConfig from '../../../constants/apiConfig';
+import { setCart } from '../../../store/slice/appSlice';
 const AppHeader = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const notification = useNotification();
     const { isAuthenticated } = useAuth();
+    const cartInfo = useSelector(cartSelector);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const timeOutOpenToolTipCart = setTimeout(() => {
+            dispatch(setCart({ ...cartInfo, notiAddCartSuccess: false }));
+        }, [3000]);
+        return () => clearTimeout(timeOutOpenToolTipCart);
+    }, [cartInfo]);
 
     const activeNav = useMemo(() => {
         const activeNav = findActiveNav(navMenuConfig);
@@ -106,7 +116,6 @@ const AppHeader = () => {
             ),
         },
     ];
-
     return (
         <Header className={styles.appHeader} style={{ background: 'white' }}>
             <div className={styles.wrapperHeader}>
@@ -161,11 +170,13 @@ const AppHeader = () => {
                 />
                 <Search />
                 <Flex justify='flex-end' className={styles.menuRight}>
-                    <button className={styles.itemMenuRight}>
-                        <Badge count={1} size='small'>
-                            <IoBagHandleOutline size={24} />
-                        </Badge>
-                    </button>
+                    <Tooltip open={cartInfo.notiAddCartSuccess} title={locales.addCartSuccess} placement={'bottom'}>
+                        <button className={styles.itemMenuRight}>
+                            <Badge count={cartInfo?.content?.data?.totalQuantity || 0} size='small' showZero>
+                                <IoBagHandleOutline size={24} />
+                            </Badge>
+                        </button>
+                    </Tooltip>
                     <Dropdown trigger={['click']} overlay={<Menu items={itemAuthDropDown} />} placement='bottom'>
                         <button className={styles.itemMenuRight}>
                             <IoPersonOutline size={24} />

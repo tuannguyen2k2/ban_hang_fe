@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const DEFAULT_PAGE_SIZE = 16;
 
 export const DEFAULT_FORMAT_TIME = 'DD/MM/YYYY HH:mm:ss';
@@ -47,3 +49,5 @@ export const UserRole = {
     ADMIN: 'ADMIN',
     USER: 'USER',
 };
+
+export const CART_EXPIRATION_DATE = dayjs(dayjs().add(3, 'day')).valueOf();

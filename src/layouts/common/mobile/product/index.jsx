@@ -6,15 +6,19 @@ import NavSider from '../../NavSider';
 import styles from './Product.module.scss';
 import SkeletonMobile from './Skeleton';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 const ProductMobile = ({ loading, listProduct, totalElements, totalPages, currentPage }) => {
     let [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     const handleChangePage = (current) => {
         const params = {};
         for (const [key, value] of searchParams.entries()) {
             params[key] = value;
         }
         setSearchParams({ ...params, page: current });
+    };
+    const handleClickItemName = (id) => {
+        navigate(`/detail-product/${id}`);
     };
     return (
         <Flex justify='flex-end' className={styles.wrapper}>
@@ -37,7 +41,12 @@ const ProductMobile = ({ loading, listProduct, totalElements, totalPages, curren
                                                     loading='lazy'
                                                 />
                                                 <Flex vertical style={{ padding: '0 10px' }}>
-                                                    <span className={styles.itemName}>{item?.name}</span>
+                                                    <span
+                                                        className={styles.itemName}
+                                                        onClick={() => handleClickItemName(item?._id)}
+                                                    >
+                                                        {item?.name}
+                                                    </span>
                                                     <span className={styles.itemPrice}>
                                                         {formatMoney(item?.price, {
                                                             currency: CURRENCY_UNIT,
