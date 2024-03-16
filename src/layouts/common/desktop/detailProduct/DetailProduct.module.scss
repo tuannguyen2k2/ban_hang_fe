@@ -7,8 +7,12 @@
 .topDetailProductWrapper{
     display: flex;
     .leftWrapper{
+        @media (max-width: 912px) {
+            padding-right: 20px;
+        }
         flex: 1;
         display: flex;
+        justify-content: center;
         .slider{
             width: 300px;
         }
