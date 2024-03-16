@@ -92,6 +92,12 @@
         }
     }
     .buyNowButton{
+        --bs-btn-active-bg: var(--color-primary);
+        --bs-btn-active-border-color: var(--color-primary);
+        --bs-btn-active-color: white;
+        --bs-btn-hover-bg:var(--color-primary);
+        --bs-btn-hover-color: white;
+        --bs-btn-hover-border-color: var(--color-primary);
         margin-top: 10px;
         height: 44px;
         background-color: var(--color-primary);
