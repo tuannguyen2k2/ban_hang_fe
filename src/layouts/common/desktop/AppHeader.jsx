@@ -18,6 +18,7 @@ import styles from './AppHeader.module.scss';
 import Search from './search/Search';
 import logo from '/public/logo.ico';
 import { setCart } from '../../../store/slice/appSlice';
+import CartComponent from './cart';
 const AppHeader = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
@@ -171,11 +172,13 @@ const AppHeader = () => {
                 <Search />
                 <Flex justify='flex-end' className={styles.menuRight}>
                     <Tooltip open={cartInfo.notiAddCartSuccess} title={locales.addCartSuccess} placement={'bottom'}>
-                        <button className={styles.itemMenuRight}>
-                            <Badge count={cartInfo?.content?.data?.totalQuantity || 0} size='small' showZero>
-                                <IoBagHandleOutline size={24} />
-                            </Badge>
-                        </button>
+                        <CartComponent>
+                            <button className={styles.itemMenuRight}>
+                                <Badge count={cartInfo?.content?.data?.totalQuantity || 0} size='small' showZero>
+                                    <IoBagHandleOutline size={24} />
+                                </Badge>
+                            </button>
+                        </CartComponent>
                     </Tooltip>
                     <Dropdown trigger={['click']} overlay={<Menu items={itemAuthDropDown} />} placement='bottom'>
                         <button className={styles.itemMenuRight}>

@@ -1,0 +1,31 @@
+.cartWrapper{
+    padding: 20px;
+    background-color: white;
+    height: 400px;
+    border: 1px #cccccc3b solid;
+    line-height: 1.5;
+}
+
+//CartItem
+.cartItemWrapper{
+    width: 450px;
+    height: fit-content;
+    margin-bottom: 14px;
+}
+.image{
+    width: 80px;
+    margin-right: 14px;
+}
+.rightCartItem{
+    width: 100%;
+    .colorAndSize{
+        width: fit-content;
+        padding: 2px 6px;
+        border-radius: 20px;
+        background-color: #F8F8F8;
+    }
+    .price{
+        color: #ff0000;
+        font-weight: 700;
+    }
+}
